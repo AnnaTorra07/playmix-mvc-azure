@@ -46,13 +46,6 @@ jobs:
         with:
           name: java-app
 
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_E82799C2C93E4D6DBB62AF9673ACF801 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E18CB93574C34B5782693AA60DE0851EE }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4DF0D434B8A24EF898E9BE98213AAC96 }}
-
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
@@ -60,3 +53,4 @@ jobs:
           app-name: 'playmix-mvc-563388'
           slot-name: 'Production'
           package: '*.jar'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_PLAYMIX }}
